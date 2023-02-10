@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./responsive.css" />
+    <title>Task</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="logo-wrap">
+          <img src="./logo.png" alt="" class="logo" />
+          <p class="sologan">Let’s get shit done!</p>
+        </div>
+        <div class="new-task" onclick="handleOpenNewTask()">
+          <i class="fa-regular fa-plus"></i>
+          <div>New task</div>
+        </div>
+      </header>
+      <div class="content">
+        <div class="content__section section-todo">
+          <div class="content__section__title">
+            <h3>Todo</h3>
+            <div>3</div>
+          </div>
+
+          <div class="content__section__list"></div>
+        </div>
+        <div class="content__section section-doing">
+          <div class="content__section__title doing">
+            <h3>Doing</h3>
+            <div>3</div>
+          </div>
+          <div class="content__section__list"></div>
+        </div>
+        <div class="content__section section-finished">
+          <div class="content__section__title finished">
+            <h3>Finished</h3>
+            <div>3</div>
+          </div>
+          <div class="content__section__list"></div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-edit">
+      <form class="form-edit">
+        <div class="add_new-task__top">
+          <div></div>
+          <h3 class="add_new-task__title">Edit Task</h3>
+          <div class="add_new-task__close" onclick="handleHideModal()">
+            <i class="fa-solid fa-x"></i>
+          </div>
+        </div>
+        <div class="form-edit__input">
+          <label>Major</label>
+          <input type="text" name="major-edit" class="input-edit" />
+        </div>
+        <div class="form-edit__input">
+          <label>Desciption</label>
+          <input type="text" name="desc-edit" class="input-edit" />
+        </div>
+        <div class="form-edit__input">
+          <label>Content</label>
+          <textarea
+            type="text"
+            name="content-edit"
+            rows="5"
+            class="input-edit"
+          ></textarea>
+        </div>
+        <div class="form-edit__types">
+          <div class="form-edit__types__item">
+            <input
+              type="radio"
+              class="input-radio"
+              name="todo"
+              id=""
+              onchange="handleOnChangeType('todo')"
+            />
+            <span>Todo</span>
+          </div>
+          <div class="form-edit__types__item">
+            <input
+              type="radio"
+              class="input-radio"
+              name="doing"
+              id=""
+              onchange="handleOnChangeType('doing')"
+            />
+            <span>Doing</span>
+          </div>
+          <div class="form-edit__types__item">
+            <input
+              type="radio"
+              class="input-radio"
+              name="finished"
+              id=""
+              onchange="handleOnChangeType('finished')"
+            />
+            <span>Finished</span>
+          </div>
+        </div>
+        <div class="form-edit__btn">
+          <button type="submit" class="save">Submit</button>
+        </div>
+      </form>
+    </div>
+    <div class="modal-add">
+      <form class="add_new-task">
+        <div class="add_new-task__top">
+          <div></div>
+          <h3 class="add_new-task__title">Add new todo</h3>
+          <div class="add_new-task__close" onclick="handleHiddenNewTask()">
+            <i class="fa-solid fa-x"></i>
+          </div>
+        </div>
+        <div class="add_new-task__input">
+          <label>Category</label>
+          <input
+            type="text"
+            name="major"
+            placeholder="Esc: Marketing"
+            class="input-add"
+          />
+        </div>
+        <div class="add_new-task__input">
+          <label>Title</label>
+          <input type="text" name="desc" class="input-add" />
+        </div>
+        <div class="add_new-task__input">
+          <label>Content</label>
+          <textarea
+            type="text"
+            name="content"
+            rows="5"
+            class="input-add"
+          ></textarea>
+        </div>
+        <div class="add_new-task__btn">
+          <button type="submit" class="save">Submit</button>
+        </div>
+      </form>
+    </div>
+    <script src="./app.js"></script>
+  </body>
+</html>
