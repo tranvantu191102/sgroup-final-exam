@@ -1,8 +1,8 @@
 let dataRender = [
   {
     id: 1,
-    major: "Maketing",
-    desc: "Write SEO article for new product",
+    category: "Maketing",
+    title: "Write SEO article for new product",
     content:
       "This is an existential moment for effective altruism and the rationalist community writ-large.",
     time: "June 30, 2022",
@@ -10,8 +10,8 @@ let dataRender = [
   },
   {
     id: 2,
-    major: "Maketing",
-    desc: "Write SEO article for new product",
+    category: "Maketing",
+    title: "Write SEO article for new product",
     content:
       "This is an existential moment for effective altruism and the rationalist community writ-large.",
     time: "June 30, 2022",
@@ -19,8 +19,8 @@ let dataRender = [
   },
   {
     id: 3,
-    major: "Maketing",
-    desc: "Write SEO article for new product",
+    category: "Maketing",
+    title: "Write SEO article for new product",
     content:
       "This is an existential moment for effective altruism and the rationalist community writ-large.",
     time: "June 30, 2022",
@@ -28,8 +28,8 @@ let dataRender = [
   },
   {
     id: 4,
-    major: "Maketing",
-    desc: "Write SEO article for new product",
+    category: "Maketing",
+    title: "Write SEO article for new product",
     content:
       "This is an existential moment for effective altruism and the rationalist community writ-large.",
     time: "June 30, 2022",
@@ -37,8 +37,8 @@ let dataRender = [
   },
   {
     id: 5,
-    major: "Maketing",
-    desc: "Write SEO article for new product",
+    category: "Maketing",
+    title: "Write SEO article for new product",
     content:
       "This is an existential moment for effective altruism and the rationalist community writ-large.",
     time: "June 30, 2022",
@@ -46,8 +46,8 @@ let dataRender = [
   },
   {
     id: 6,
-    major: "Maketing",
-    desc: "Write SEO article for new product",
+    category: "Maketing",
+    title: "Write SEO article for new product",
     content:
       "This is an existential moment for effective altruism and the rationalist community writ-large.",
     time: "June 30, 2022",
@@ -55,8 +55,8 @@ let dataRender = [
   },
   {
     id: 7,
-    major: "Maketing",
-    desc: "Write SEO article for new product",
+    category: "Maketing",
+    title: "Write SEO article for new product",
     content:
       "This is an existential moment for effective altruism and the rationalist community writ-large.",
     time: "June 30, 2022",
@@ -64,8 +64,8 @@ let dataRender = [
   },
   {
     id: 8,
-    major: "Maketing",
-    desc: "Write SEO article for new product",
+    category: "Maketing",
+    title: "Write SEO article for new product",
     content:
       "This is an existential moment for effective altruism and the rationalist community writ-large.",
     time: "June 30, 2022",
@@ -73,8 +73,8 @@ let dataRender = [
   },
   {
     id: 9,
-    major: "Maketing",
-    desc: "Write SEO article for new product",
+    category: "Maketing",
+    title: "Write SEO article for new product",
     content:
       "This is an existential moment for effective altruism and the rationalist community writ-large.",
     time: "June 30, 2022",
@@ -112,8 +112,8 @@ function render(id) {
         <div class="content__section__list__item">
         <div class="item-top">
           <div class="item-top__title">
-            <h4>${data.major}</h4>
-            <div>${data.desc}</div>
+            <h4>${data.category}</h4>
+            <div>${data.title}</div>
           </div>
           <div class="item-top__btn">
             <button class="btn-edit" 
@@ -185,27 +185,31 @@ function handleOpenNewTask() {
 
 function handleHiddenNewTask() {
   modalAddEl.classList.remove("active");
+  hideCheckInputEmpty();
+  document.querySelector('input[name="category"]').value = "";
+  document.querySelector('input[name="title"]').value = "";
+  document.querySelector('textarea[name="content"]').value = "";
 }
 
 newTaskEl.addEventListener("submit", (e) => {
   e.preventDefault();
-  const major = document.querySelector('input[name="major"]').value;
-  const desc = document.querySelector('input[name="desc"]').value;
+  const category = document.querySelector('input[name="category"]').value;
+  const title = document.querySelector('input[name="title"]').value;
   const content = document.querySelector('textarea[name="content"]').value;
 
   inputAddEls.forEach((element) => {
     checkInputEmpty(element);
   });
 
-  if (!major || !desc || !content) {
+  if (!category || !title || !content) {
     return;
   }
 
   const time = getCurrentTime();
   const data = {
     id: Math.floor(Math.random() * 1000000),
-    major,
-    desc,
+    category,
+    title,
     content,
     time,
     type: "todo",
@@ -214,8 +218,8 @@ newTaskEl.addEventListener("submit", (e) => {
   dataRender.push(data);
   render("todo");
   modalAddEl.classList.remove("active");
-  document.querySelector('input[name="major"]').value = "";
-  document.querySelector('input[name="desc"]').value = "";
+  document.querySelector('input[name="category"]').value = "";
+  document.querySelector('input[name="title"]').value = "";
   document.querySelector('textarea[name="content"]').value = "";
 });
 
@@ -224,18 +228,14 @@ function handleEditItem(id) {
 
   const data = dataRender.filter((item) => item.id === id);
 
-  const major = document.querySelector('input[name="major-edit"]');
-  const desc = document.querySelector('input[name="desc-edit"]');
+  const category = document.querySelector('input[name="category-edit"]');
+  const title = document.querySelector('input[name="title-edit"]');
   const content = document.querySelector('textarea[name="content-edit"]');
   const time = getCurrentTime();
 
-  major.value = data[0].major;
-  desc.value = data[0].desc;
+  category.value = data[0].category;
+  title.value = data[0].title;
   content.value = data[0].content;
-
-  major.onblur = checkInputEmpty(major);
-  desc.onblur = checkInputEmpty(desc);
-  content.onblur = checkInputEmpty(content);
 
   inputRadioEls.forEach((el) => {
     el.checked = el.name === data[0].type;
@@ -249,22 +249,24 @@ function handleEditItem(id) {
   formEditEl.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const major = document.querySelector('input[name="major-edit"]').value;
-    const desc = document.querySelector('input[name="desc-edit"]').value;
+    const category = document.querySelector(
+      'input[name="category-edit"]'
+    ).value;
+    const title = document.querySelector('input[name="title-edit"]').value;
     const content = document.querySelector(
       'textarea[name="content-edit"]'
     ).value;
     const type = document.querySelector("input:checked").name;
 
-    if (!major || !desc || !content || !type) {
+    if (!category || !title || !content || !type) {
       alert("Please enter your edit!");
       return;
     }
 
     dataRender.forEach((item) => {
       if (item.id === id) {
-        item.major = major;
-        item.desc = desc;
+        item.category = category;
+        item.title = title;
         item.content = content;
         item.time = time;
         item.type = type;
@@ -277,6 +279,7 @@ function handleEditItem(id) {
 
 function handleHideModal() {
   modalEditEl.classList.remove("active");
+  hideCheckInputEmpty();
 }
 
 function getCurrentTime() {
@@ -296,7 +299,7 @@ function getCurrentTime() {
     "December",
   ];
   const day = currentTime.getDate();
-  const month = monthNames[currentTime.getMonth() + 1];
+  const month = monthNames[currentTime.getMonth()];
   const year = currentTime.getFullYear();
 
   return `${month} ${day}, ${year}`;
@@ -324,4 +327,19 @@ function handleOnChangeType(type) {
     el.checked = false;
   });
   document.querySelector(`input[name="${type}"]`).checked = true;
+}
+
+function hideCheckInputEmpty() {
+  const inputEmptyEls = document.querySelectorAll(".input-empty");
+  const inputNotEmptyEls = document.querySelectorAll(".input-not-empty");
+  if (inputEmptyEls) {
+    inputEmptyEls.forEach((el) => {
+      el.classList.remove("input-empty");
+    });
+  }
+  if (inputNotEmptyEls) {
+    inputNotEmptyEls.forEach((el) => {
+      el.classList.remove("input-not-empty");
+    });
+  }
 }
