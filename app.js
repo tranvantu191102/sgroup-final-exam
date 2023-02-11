@@ -1,88 +1,90 @@
-let dataRender = [
-  {
-    id: 1,
-    category: "Maketing",
-    title: "Write SEO article for new product",
-    content:
-      "This is an existential moment for effective altruism and the rationalist community writ-large.",
-    time: "June 30, 2022",
-    type: "todo",
-  },
-  {
-    id: 2,
-    category: "Maketing",
-    title: "Write SEO article for new product",
-    content:
-      "This is an existential moment for effective altruism and the rationalist community writ-large.",
-    time: "June 30, 2022",
-    type: "todo",
-  },
-  {
-    id: 3,
-    category: "Maketing",
-    title: "Write SEO article for new product",
-    content:
-      "This is an existential moment for effective altruism and the rationalist community writ-large.",
-    time: "June 30, 2022",
-    type: "todo",
-  },
-  {
-    id: 4,
-    category: "Maketing",
-    title: "Write SEO article for new product",
-    content:
-      "This is an existential moment for effective altruism and the rationalist community writ-large.",
-    time: "June 30, 2022",
-    type: "doing",
-  },
-  {
-    id: 5,
-    category: "Maketing",
-    title: "Write SEO article for new product",
-    content:
-      "This is an existential moment for effective altruism and the rationalist community writ-large.",
-    time: "June 30, 2022",
-    type: "doing",
-  },
-  {
-    id: 6,
-    category: "Maketing",
-    title: "Write SEO article for new product",
-    content:
-      "This is an existential moment for effective altruism and the rationalist community writ-large.",
-    time: "June 30, 2022",
-    type: "doing",
-  },
-  {
-    id: 7,
-    category: "Maketing",
-    title: "Write SEO article for new product",
-    content:
-      "This is an existential moment for effective altruism and the rationalist community writ-large.",
-    time: "June 30, 2022",
-    type: "finished",
-  },
-  {
-    id: 8,
-    category: "Maketing",
-    title: "Write SEO article for new product",
-    content:
-      "This is an existential moment for effective altruism and the rationalist community writ-large.",
-    time: "June 30, 2022",
-    type: "finished",
-  },
-  {
-    id: 9,
-    category: "Maketing",
-    title: "Write SEO article for new product",
-    content:
-      "This is an existential moment for effective altruism and the rationalist community writ-large.",
-    time: "June 30, 2022",
-    type: "finished",
-  },
-];
+// let dataRender = [
+//   {
+//     id: 1,
+//     category: "Maketing",
+//     title: "Write SEO article for new product",
+//     content:
+//       "This is an existential moment for effective altruism and the rationalist community writ-large.",
+//     time: "June 30, 2022",
+//     type: "todo",
+//   },
+//   {
+//     id: 2,
+//     category: "Maketing",
+//     title: "Write SEO article for new product",
+//     content:
+//       "This is an existential moment for effective altruism and the rationalist community writ-large.",
+//     time: "June 30, 2022",
+//     type: "todo",
+//   },
+//   {
+//     id: 3,
+//     category: "Maketing",
+//     title: "Write SEO article for new product",
+//     content:
+//       "This is an existential moment for effective altruism and the rationalist community writ-large.",
+//     time: "June 30, 2022",
+//     type: "todo",
+//   },
+//   {
+//     id: 4,
+//     category: "Maketing",
+//     title: "Write SEO article for new product",
+//     content:
+//       "This is an existential moment for effective altruism and the rationalist community writ-large.",
+//     time: "June 30, 2022",
+//     type: "doing",
+//   },
+//   {
+//     id: 5,
+//     category: "Maketing",
+//     title: "Write SEO article for new product",
+//     content:
+//       "This is an existential moment for effective altruism and the rationalist community writ-large.",
+//     time: "June 30, 2022",
+//     type: "doing",
+//   },
+//   {
+//     id: 6,
+//     category: "Maketing",
+//     title: "Write SEO article for new product",
+//     content:
+//       "This is an existential moment for effective altruism and the rationalist community writ-large.",
+//     time: "June 30, 2022",
+//     type: "doing",
+//   },
+//   {
+//     id: 7,
+//     category: "Maketing",
+//     title: "Write SEO article for new product",
+//     content:
+//       "This is an existential moment for effective altruism and the rationalist community writ-large.",
+//     time: "June 30, 2022",
+//     type: "finished",
+//   },
+//   {
+//     id: 8,
+//     category: "Maketing",
+//     title: "Write SEO article for new product",
+//     content:
+//       "This is an existential moment for effective altruism and the rationalist community writ-large.",
+//     time: "June 30, 2022",
+//     type: "finished",
+//   },
+//   {
+//     id: 9,
+//     category: "Maketing",
+//     title: "Write SEO article for new product",
+//     content:
+//       "This is an existential moment for effective altruism and the rationalist community writ-large.",
+//     time: "June 30, 2022",
+//     type: "finished",
+//   },
+// ];
 
-// let dataRender = [];
+let dataRender = window.localStorage.getItem("data")
+  ? JSON.parse(window.localStorage.getItem("data"))
+  : [];
 
 const listTodoEl = document.querySelector(
   ".section-todo > .content__section__list"
@@ -101,11 +103,16 @@ const formEditEl = document.querySelector(".form-edit");
 const inputAddEls = document.querySelectorAll(".input-add");
 const inputEditEls = document.querySelectorAll(".input-edit");
 const inputRadioEls = document.querySelectorAll(".input-radio");
-
-function render(id) {
+let idEdit;
+render();
+function render() {
+  // dataRender = window.localStorage.getItem("data")
+  //   ? JSON.parse(window.localStorage.getItem("data"))
+  //   : [];
   let htmlTodo = "";
   let htmlDoing = "";
   let htmlFinished = "";
+  console.log(dataRender);
 
   dataRender.forEach((data) => {
     const htmlTemp = `
@@ -151,32 +158,16 @@ function render(id) {
     }
   });
 
-  if (id === "todo") {
-    listTodoEl.innerHTML = htmlTodo;
-    return;
-  }
-
-  if (id === "doing") {
-    listTodoEl.innerHTML = htmlDoing;
-    return;
-  }
-
-  if (id === "finished") {
-    listTodoEl.innerHTML = htmlFinished;
-    return;
-  }
-
   listDoingEl.innerHTML = htmlDoing;
   listFinishedEl.innerHTML = htmlFinished;
   listTodoEl.innerHTML = htmlTodo;
 }
 
-render("all");
-
 function handleDeleteItem(id) {
   const dataCopy = [...dataRender];
   dataRender = dataCopy.filter((data) => data.id !== id);
-  render("all");
+  window.localStorage.setItem("data", JSON.stringify(dataRender));
+  render();
 }
 
 function handleOpenNewTask() {
@@ -216,26 +207,76 @@ newTaskEl.addEventListener("submit", (e) => {
   };
 
   dataRender.push(data);
-  render("todo");
+  window.localStorage.setItem("data", JSON.stringify(dataRender));
   modalAddEl.classList.remove("active");
   document.querySelector('input[name="category"]').value = "";
   document.querySelector('input[name="title"]').value = "";
   document.querySelector('textarea[name="content"]').value = "";
+  hideCheckInputEmpty();
+  render();
+});
+formEditEl.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  if (idEdit) {
+    const categoryEdit = document.querySelector(
+      'input[name="category-edit"]'
+    ).value;
+    const titleEdit = document.querySelector('input[name="title-edit"]').value;
+    const contentEdit = document.querySelector(
+      'textarea[name="content-edit"]'
+    ).value;
+    const type = document.querySelector("input:checked").name;
+    const time = getCurrentTime();
+
+    if (!categoryEdit || !titleEdit || !contentEdit || !type) {
+      alert("Please enter your edit!");
+      return;
+    }
+
+    dataRender = dataRender.map((item) => {
+      if (item.id === idEdit) {
+        console.log("haha", idEdit);
+        const newData = {
+          ...item,
+          category: categoryEdit,
+          title: titleEdit,
+          content: contentEdit,
+          time,
+          type,
+        };
+        return newData;
+      }
+      return item;
+    });
+    // const newData = {
+    //   id: id,
+    //   category: categoryEdit,
+    //   title: titleEdit,
+    //   content: contentEdit,
+    //   time,
+    //   type,
+    // };
+    // dataRender = [...dataRender, newData];
+    window.localStorage.setItem("data", JSON.stringify(dataRender));
+    modalEditEl.classList.remove("active");
+    hideCheckInputEmpty();
+    render();
+  }
 });
 
 function handleEditItem(id) {
   modalEditEl.classList.add("active");
+  idEdit = id;
 
   const data = dataRender.filter((item) => item.id === id);
+  // dataRender = dataRender.filter((item) => item.id !== id);
 
-  const category = document.querySelector('input[name="category-edit"]');
-  const title = document.querySelector('input[name="title-edit"]');
-  const content = document.querySelector('textarea[name="content-edit"]');
-  const time = getCurrentTime();
-
-  category.value = data[0].category;
-  title.value = data[0].title;
-  content.value = data[0].content;
+  document.querySelector('input[name="category-edit"]').value =
+    data[0].category;
+  document.querySelector('input[name="title-edit"]').value = data[0].title;
+  document.querySelector('textarea[name="content-edit"]').value =
+    data[0].content;
 
   inputRadioEls.forEach((el) => {
     el.checked = el.name === data[0].type;
@@ -244,36 +285,6 @@ function handleEditItem(id) {
     element.addEventListener("blur", () => {
       checkInputEmpty(element);
     });
-  });
-
-  formEditEl.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const category = document.querySelector(
-      'input[name="category-edit"]'
-    ).value;
-    const title = document.querySelector('input[name="title-edit"]').value;
-    const content = document.querySelector(
-      'textarea[name="content-edit"]'
-    ).value;
-    const type = document.querySelector("input:checked").name;
-
-    if (!category || !title || !content || !type) {
-      alert("Please enter your edit!");
-      return;
-    }
-
-    dataRender.forEach((item) => {
-      if (item.id === id) {
-        item.category = category;
-        item.title = title;
-        item.content = content;
-        item.time = time;
-        item.type = type;
-      }
-    });
-    render("all");
-    modalEditEl.classList.remove("active");
   });
 }
 
@@ -322,7 +333,6 @@ inputAddEls.forEach((el) => {
 });
 
 function handleOnChangeType(type) {
-  console.log(type);
   inputRadioEls.forEach((el) => {
     el.checked = false;
   });
