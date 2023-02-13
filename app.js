@@ -103,6 +103,15 @@ const formEditEl = document.querySelector(".form-edit");
 const inputAddEls = document.querySelectorAll(".input-add");
 const inputEditEls = document.querySelectorAll(".input-edit");
 const inputRadioEls = document.querySelectorAll(".input-radio");
+const quantityTodo = document.querySelector(
+  ".content__section__title .quantity"
+);
+const quantityDoing = document.querySelector(
+  ".content__section__title.doing .quantity"
+);
+const quantityFinished = document.querySelector(
+  ".content__section__title.finished .quantity"
+);
 let idEdit;
 render();
 function render() {
@@ -112,7 +121,9 @@ function render() {
   let htmlTodo = "";
   let htmlDoing = "";
   let htmlFinished = "";
-  console.log(dataRender);
+  let todoNum = 0;
+  let doingNum = 0;
+  let finishedNum = 0;
 
   dataRender.forEach((data) => {
     const htmlTemp = `
@@ -149,15 +160,21 @@ function render() {
 
     if (data.type === "todo") {
       htmlTodo += htmlTemp;
+      todoNum += 1;
     }
     if (data.type === "doing") {
       htmlDoing += htmlTemp;
+      doingNum += 1;
     }
     if (data.type === "finished") {
       htmlFinished += htmlTemp;
+      finishedNum += 1;
     }
   });
 
+  quantityTodo.innerHTML = todoNum;
+  quantityDoing.innerHTML = doingNum;
+  quantityFinished.innerHTML = finishedNum;
   listDoingEl.innerHTML = htmlDoing;
   listFinishedEl.innerHTML = htmlFinished;
   listTodoEl.innerHTML = htmlTodo;
